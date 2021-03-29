@@ -1176,12 +1176,6 @@ private:
 
 TextureCacheBase::TCacheEntry* TextureCacheBase::Load(const u32 stage)
 {
-  // if this stage was not invalidated by changes to texture registers, keep the current texture
-  if (IsValidBindPoint(stage) && bound_textures[stage])
-  {
-    return bound_textures[stage];
-  }
-
   const FourTexUnits& tex = bpmem.tex[stage >> 2];
   const u32 id = stage & 3;
   const u32 address = (tex.texImage3[id].image_base /* & 0x1FFFFF*/) << 5;
